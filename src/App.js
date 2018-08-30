@@ -61,6 +61,7 @@ class App extends Component {
     const text = this.state.userInput.split('');
     text.splice(index, 1);
     const updatedText = text.join('');
+
     this.setState({userInput: updatedText})
   }
 
@@ -80,6 +81,7 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
+
     }
 
     let persons = null;
@@ -117,8 +119,7 @@ class App extends Component {
 
         <input
         onChange={(event) => this.inputChangeHandler(event)}
-        value={this.state.userInput}
-         />
+        value={this.state.userInput} />
         <p>{this.state.userInput}</p>
         <p className="counter">{this.state.userInput.length}</p>
         <ValidationComponent validator={this.state.lengthVar > 5 ? 'Long enough' : 'too short!'}/>
@@ -128,6 +129,7 @@ class App extends Component {
         {persons}
 
       </div>
+
     );
 
   }
