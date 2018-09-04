@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import styles from './App.css';
+import React, { PureComponent } from 'react';
+import classes from './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
 
-class App extends Component {
+import Aux from '../hoc/Auxiliary';
+
+class App extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -18,10 +21,11 @@ class App extends Component {
      console.log("[App.js] Inside componentDidMount()")
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-      console.log("UPDATE [App.js] inside shouldComponentUpdate", nextProps, nextState)
-      return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //     console.log("UPDATE [App.js] inside shouldComponentUpdate", nextProps, nextState)
+  //     return nextState.persons !== this.state.persons ||
+  //       nextState.showPersons !== this.state.showPersons;
+  // }
 
   componentWillUpdate(nextProps, nextState) {
       console.log("UPDATE [App.js] inside componentWillUpdate", nextProps, nextState)
@@ -36,7 +40,6 @@ class App extends Component {
       { id:"ah", name: "Max", age: 29},
       { id:"kj", name: "Manu", age: 24},
       { id:"h9", name: "Stephanie", age: 32},
-
     ],
     otherState: 'some other value',
     showPersons: false,
@@ -96,7 +99,8 @@ class App extends Component {
     }
 
     return (
-      <div className={styles.App}>
+      <Aux>
+        <button onClick={() => {this.setState({showPersons:true})}}>Show Persons</button>
         <Cockpit 
         appTitle={this.props.title}
         showPersons={this.state.showPersons}
@@ -104,10 +108,9 @@ class App extends Component {
         clicked={this.togglePersonHandler} />
 
         {persons}
-
-      </div>
+    </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
