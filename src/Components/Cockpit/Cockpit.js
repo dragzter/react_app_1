@@ -21,7 +21,7 @@ const cockpit = (props) => {
     return (
         <Aux>
             <h1>{props.appTitle}</h1>
-            <p className={assignedClasses.join(' ')}>This is really working.</p>
+            <p className={assignedClasses.join(' ')}>This is a p tag</p>
 
             <button
             className={btnClass}
